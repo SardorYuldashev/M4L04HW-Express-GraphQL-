@@ -7,6 +7,7 @@ export const up = function(knex) {
     table.increments('id');
     table.integer('student_id').references('id').inTable('students').onDelete('CASCADE');
     table.integer('group_id').references('id').inTable('groups').onDelete('CASCADE');
+    table.unique(['student_id', 'group_id']);
   });
 };
 
