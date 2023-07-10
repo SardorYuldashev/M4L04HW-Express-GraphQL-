@@ -14,7 +14,14 @@ const resolvers = {
     student: (_, args) => {
       return showStudent({ id: args.id });
     }
-  }
+  },
+  Student: {
+    full_name: async (parent) => {
+      const student =await showStudent({ id: parent.id })
+      
+      return `${student.first_name} ${student.last_name}`
+    }
+  },
 };
 
 export default {
