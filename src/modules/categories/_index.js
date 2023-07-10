@@ -5,6 +5,7 @@ import { listCategories } from './list-categories.js';
 import { showCategory } from './show-category.js';
 import { addCategory } from './add-category.js';
 import { editCategory } from './edit-category.js';
+import { removeCategory } from './remove-category.js';
 
 const typeDefs = readFileSync(join(process.cwd(), 'src', 'modules', 'categories', '_schema.gql'), 'utf8');
 
@@ -27,6 +28,9 @@ const resolvers = {
     },
     updateCategory: (_, args) => {
       return editCategory({ id: args.id, ...args.input });
+    },
+    removeCategory: (_, args) => {
+      return removeCategory({ id: args.id });
     }
   },
   Subscription: {
