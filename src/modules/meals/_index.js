@@ -6,6 +6,7 @@ import { showCategory } from './../categories/show-category.js';
 import { showMeal } from './show-meal.js';
 import { addMeal } from './add-meal.js';
 import { editMeal } from './edit-meal.js';
+import { removeMeal } from './remove-meal.js';
 
 const typeDefs = readFileSync(join(process.cwd(), 'src', 'modules', 'meals', '_schema.gql'), 'utf8');
 
@@ -29,6 +30,9 @@ const resolvers = {
     updateMeal: (_, args) => {
       return editMeal({ id: args.id, ...args.input });
     },
+    removeMeal: (_, args) => {
+      return removeMeal({ id: args.id });
+    }
   },
   Subscription: {
     mealCreated: {
