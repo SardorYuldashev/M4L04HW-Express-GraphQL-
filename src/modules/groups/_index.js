@@ -5,6 +5,7 @@ import { listGroups } from './list-groups.js';
 import { showGroup } from './show-group.js';
 import { addGroup } from './add-group.js';
 import { editGroup } from './edit-group.js';
+import { removeGroup } from './remove-group.js';
 
 const typeDefs = readFileSync(join(process.cwd(), 'src', 'modules', 'groups', '_schema.gql'), 'utf8');
 
@@ -28,6 +29,9 @@ const resolvers = {
     updateGroup: (_, args) => {
       return editGroup({ id: args.id, ...args.input });
     },
+    removeGroup: (_, args) => {
+      return removeGroup({ id: args.id });
+    }
   },
   Subscription: {
     groupCreated: {
