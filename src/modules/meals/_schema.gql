@@ -17,6 +17,10 @@ type Mutation {
   removeMeal(id: ID!): Meal!
 }
 
+type Subscription {
+  mealCreated: Meal!
+}
+
 input CreateMealInput {
   name: String!
   price: Float!
