@@ -12,6 +12,7 @@ const typeDefs = readFileSync(
   join(process.cwd(), 'src', 'modules', 'users', '_schema.gql'),
   'utf8'
 );
+
 const resolvers = {
   Query: {
     users: () => {

@@ -7,12 +7,13 @@ import { showPost } from './show-post.js';
 import { editPost } from './edit-post.js';
 import { removePost } from './remove-post.js';
 import { showUser } from '../users/show-user.js';
-import { showComment } from '../comments/show-comment.js';
+import { listComments } from './../comments/list-comments.js';
 
 const typeDefs = readFileSync(
   join(process.cwd(), 'src', 'modules', 'posts', '_schema.gql'),
   'utf8'
 );
+
 const resolvers = {
   Query: {
     posts: () => {
@@ -46,9 +47,9 @@ const resolvers = {
     user: (parent) => {
       return showUser({ id: parent.user_id });
     },
-    // comments: (parent) => {
-    //   return showComment({ id: parent.comment_id });
-    // }
+    comments: (parent) => {
+      return listComments({ post_id: parent.id });
+    }
   },
 };
 

@@ -1,5 +1,5 @@
 import db from '../../db/index.js';
 
-export const listUsers = () => {
-  return db('users').where({}).select('*');
+export const listUsers = (filter = {}) => {
+  return db('users').where(filter).select('*');
 };
