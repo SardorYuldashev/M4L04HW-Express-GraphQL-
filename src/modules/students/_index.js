@@ -4,6 +4,7 @@ import { pubsub } from '../../graphql/pubsub.js';
 import { listStudents } from './list-students.js';
 import { showStudent } from './show-student.js';
 import { addStudent } from './add-student.js';
+import { editStudents } from './edit-student.js';
 
 const typeDefs = readFileSync(join(process.cwd(), 'src', 'modules', 'students', '_schema.gql'), 'utf8');
 
@@ -24,6 +25,9 @@ const resolvers = {
 
       return result;
     },
+    updateStudent: (_, args) => {
+      return editStudents({ id: args.id, ...args.input });
+    },
   },
   Subscription: {
     studentCreated: {
@@ -32,8 +36,8 @@ const resolvers = {
   },
   Student: {
     full_name: async (parent) => {
-      const student =await showStudent({ id: parent.id });
-      
+      const student = await showStudent({ id: parent.id });
+
       return `${student.first_name} ${student.last_name}`
     }
   },
