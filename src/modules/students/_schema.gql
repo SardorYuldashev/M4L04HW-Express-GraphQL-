@@ -17,6 +17,10 @@ type Mutation {
   removeStudent(id: ID!): Student!
 }
 
+type Subscription {
+  studentCreated: Student!
+}
+
 input CreateStudentInput {
   first_name: String!
   last_name: String!
