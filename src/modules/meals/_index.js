@@ -5,6 +5,7 @@ import { listMeals } from './list-meals.js';
 import { showCategory } from './../categories/show-category.js';
 import { showMeal } from './show-meal.js';
 import { addMeal } from './add-meal.js';
+import { editMeal } from './edit-meal.js';
 
 const typeDefs = readFileSync(join(process.cwd(), 'src', 'modules', 'meals', '_schema.gql'), 'utf8');
 
@@ -24,6 +25,9 @@ const resolvers = {
       pubsub.publish('MEAL_CREATED', { mealCreated: result });
 
       return result;
+    },
+    updateMeal: (_, args) => {
+      return editMeal({ id: args.id, ...args.input });
     },
   },
   Subscription: {
