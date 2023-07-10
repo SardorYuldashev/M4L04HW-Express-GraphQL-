@@ -3,11 +3,9 @@
  * @returns { Promise<void> }
  */
 export const up = function(knex) {
-  return knex.schema.createTable('posts', (table) => {
+  return knex.schema.createTable('groups', (table) => {
     table.increments('id');
-    table.string('title').notNullable().unique();
-    table.string('content');
-    table.integer('user_id')
+    table.string('name').notNullable().unique();
   })
 };
 
@@ -16,5 +14,5 @@ export const up = function(knex) {
  * @returns { Promise<void> }
  */
 export const down = function(knex) {
-  return knex.schema.dropTable('posts');
+  return knex.schema.dropTable('groups');
 };

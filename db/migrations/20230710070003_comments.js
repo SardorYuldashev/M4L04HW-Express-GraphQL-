@@ -8,7 +8,7 @@ export const up = function(knex) {
     table.string('text').notNullable();
     table.integer('user_id').references('id').inTable('users').onDelete('CASCADE');
     table.integer('post_id').references('id').inTable('posts').onDelete('CASCADE');
-  })
+  });
 };
 
 /**
