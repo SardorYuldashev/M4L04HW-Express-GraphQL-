@@ -38,7 +38,9 @@ const resolvers = {
     },
   },
   Subscription: {
-    postCreated: () => pubsub.asyncIterator(['POST_CREATED']),
+    postCreated: {
+      subscribe: () => pubsub.asyncIterator(['POST_CREATED']),
+    }
   },
   Post: {
     user: (parent) => {

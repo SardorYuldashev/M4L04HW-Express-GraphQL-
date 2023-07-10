@@ -36,7 +36,9 @@ const resolvers = {
     }
   },
   Subscription: {
-    commentCreated: () => pubsub.asyncIterator(['COMMENT_CREATED']),
+    commentCreated: {
+      subscribe: () => pubsub.asyncIterator(['COMMENT_CREATED'])
+    }
   },
   Comment: {
     user: (parent) => {
