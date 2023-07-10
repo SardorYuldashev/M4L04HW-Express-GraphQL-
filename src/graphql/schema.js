@@ -7,11 +7,16 @@ import { makeExecutableSchema } from '@graphql-tools/schema';
 // const resolversArr = [categoriesModule.resolvers, mealsModule.resolvers];
 
 // Task 2 uchun
-import usersModule from '../modules/users/_index.js';
-import postsModule from '../modules/posts/_index.js';
-import commentsModule from '../modules/comments/_index.js';
-const typdefsArr = [usersModule.typeDefs, postsModule.typeDefs, commentsModule.typeDefs];
-const resolversArr = [usersModule.resolvers, postsModule.resolvers, commentsModule.resolvers];
+// import usersModule from '../modules/users/_index.js';
+// import postsModule from '../modules/posts/_index.js';
+// import commentsModule from '../modules/comments/_index.js';
+// const typdefsArr = [usersModule.typeDefs, postsModule.typeDefs, commentsModule.typeDefs];
+// const resolversArr = [usersModule.resolvers, postsModule.resolvers, commentsModule.resolvers];
+
+// Task 3 uchun
+import studentsModule from '../modules/students/_index.js';
+const typdefsArr = [studentsModule.typeDefs];
+const resolversArr = [studentsModule.resolvers];
 
 export const schema = makeExecutableSchema({
   typeDefs: typdefsArr,
