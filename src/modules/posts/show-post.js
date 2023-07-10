@@ -6,7 +6,7 @@ export const showPost = async ({ id }) => {
 
   if (!post) {
     throw new NotFoundError('Post not found');
-  }
+  };
 
   return post;
 };
