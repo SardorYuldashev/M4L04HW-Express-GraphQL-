@@ -2,8 +2,9 @@ import { makeExecutableSchema } from '@graphql-tools/schema';
 
 // Task 1 uchun
 import categoriesModule from '../modules/categories/_index.js';
-const typdefsArr = [categoriesModule.typeDefs];
-const resolversArr = [categoriesModule.resolvers];
+import mealsModule from '../modules/meals/_index.js';
+const typdefsArr = [categoriesModule.typeDefs, mealsModule.typeDefs];
+const resolversArr = [categoriesModule.resolvers, mealsModule.resolvers];
 
 // Task 2 uchun
 // import usersModule from '../modules/users/_index.js';
