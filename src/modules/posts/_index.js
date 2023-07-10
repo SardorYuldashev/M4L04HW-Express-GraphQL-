@@ -7,6 +7,7 @@ import { showPost } from './show-post.js';
 import { editPost } from './edit-post.js';
 import { removePost } from './remove-post.js';
 import { showUser } from '../users/show-user.js';
+import { showComment } from '../comments/show-comment.js';
 
 const typeDefs = readFileSync(
   join(process.cwd(), 'src', 'modules', 'posts', '_schema.gql'),
@@ -43,6 +44,9 @@ const resolvers = {
     user: (parent) => {
       return showUser({ id: parent.user_id });
     },
+    // comments: (parent) => {
+    //   return showComment({ id: parent.comment_id });
+    // }
   },
 };
 
