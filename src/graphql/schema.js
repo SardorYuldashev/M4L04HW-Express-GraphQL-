@@ -15,8 +15,9 @@ import { makeExecutableSchema } from '@graphql-tools/schema';
 
 // Task 3 uchun
 import studentsModule from '../modules/students/_index.js';
-const typdefsArr = [studentsModule.typeDefs];
-const resolversArr = [studentsModule.resolvers];
+import groupsModule from '../modules/groups/_index.js';
+const typdefsArr = [studentsModule.typeDefs, groupsModule.typeDefs];
+const resolversArr = [studentsModule.resolvers, groupsModule.resolvers];
 
 export const schema = makeExecutableSchema({
   typeDefs: typdefsArr,
