@@ -46,8 +46,8 @@ const resolvers = {
 
       return `${student.first_name} ${student.last_name}`
     },
-    groups: async (parent) => {      
-      return await studentInGroups({student_id: parent.id});
+    groups: async (parent) => {
+      return await studentInGroups({ student_id: parent.id });
     }
   },
 };

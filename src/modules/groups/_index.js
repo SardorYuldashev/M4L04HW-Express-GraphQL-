@@ -6,6 +6,7 @@ import { showGroup } from './show-group.js';
 import { addGroup } from './add-group.js';
 import { editGroup } from './edit-group.js';
 import { removeGroup } from './remove-group.js';
+import { studentsInGroup } from './students-in-group.js';
 
 const typeDefs = readFileSync(join(process.cwd(), 'src', 'modules', 'groups', '_schema.gql'), 'utf8');
 
@@ -38,6 +39,11 @@ const resolvers = {
       subscribe: () => pubsub.asyncIterator(['GROUP_CREATED'])
     }
   },
+  Group: {
+    students: async (parent) => {
+      return await studentsInGroup({ group_id: parent.id });
+    }
+  }
 };
 
 export default {
