@@ -19,4 +19,7 @@ const db = knex({
   },
 });
 
+/**
+ * @type {knex.Knex}
+ */
 export default db;
