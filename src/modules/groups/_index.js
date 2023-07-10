@@ -1,9 +1,10 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import { pubsub } from '../../graphql/pubsub.js';
-import { listGroups } from './listGroups.js';
-import { showGroup } from './showGroup.js';
+import { listGroups } from './list-groups.js';
+import { showGroup } from './show-group.js';
 import { addGroup } from './add-group.js';
+import { editGroup } from './edit-group.js';
 
 const typeDefs = readFileSync(join(process.cwd(), 'src', 'modules', 'groups', '_schema.gql'), 'utf8');
 
@@ -23,6 +24,9 @@ const resolvers = {
       pubsub.publish('GROUP_CREATED', { groupCreated: result });
 
       return result;
+    },
+    updateGroup: (_, args) => {
+      return editGroup({ id: args.id, ...args.input });
     },
   },
   Subscription: {
