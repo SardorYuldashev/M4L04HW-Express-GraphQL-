@@ -16,13 +16,18 @@ type Subscription {
 type User {
   id: ID!
   name: String
+  username: String
   posts: [Post!]!
 }
 
 input CreateUserInput {
   name: String!
+  username: String!
+  password: String!
 }
 
 input UpdateUserInput {
   name: String
+  username: String
+  password: String
 }
