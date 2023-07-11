@@ -1,9 +1,6 @@
 import knex from 'knex';
 import config from '../shared/config/index.js';
 
-/**
- * @type {knex.Knex}
- */
 const db = knex({
   client: 'postgresql',
   connection: {
@@ -19,7 +16,4 @@ const db = knex({
   },
 });
 
-/**
- * @type {knex.Knex}
- */
 export default db;
