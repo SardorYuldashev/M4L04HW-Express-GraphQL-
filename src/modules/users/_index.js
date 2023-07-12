@@ -7,6 +7,7 @@ import { showUser } from './show-user.js';
 import { editUser } from './edit-user.js';
 import { removeUser } from './remove-user.js';
 import { listPosts } from '../posts/list-posts.js';
+import { loginUser } from './login-user.js';
 
 const typeDefs = readFileSync(
   join(process.cwd(), 'src', 'modules', 'users', '_schema.gql'),
@@ -30,12 +31,18 @@ const resolvers = {
 
       return result;
     },
+
     updateUser: (_, args) => {
       return editUser({ id: args.id, ...args.input });
     },
+
     removeUser: (_, args) => {
       return removeUser({ id: args.id });
     },
+
+    login: (_, args) => {
+      return loginUser(args.input);
+    }
   },
   Subscription: {
     userCreated: {
