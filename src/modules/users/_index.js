@@ -8,6 +8,8 @@ import { editUser } from './edit-user.js';
 import { removeUser } from './remove-user.js';
 import { listPosts } from '../posts/list-posts.js';
 import { loginUser } from './login-user.js';
+import { ForbiddedError, UnauthorizedError } from '../../shared/errors/index.js';
+import { isLoggedIn } from '../../graphql/is-loggedin.js';
 
 const typeDefs = readFileSync(
   join(process.cwd(), 'src', 'modules', 'users', '_schema.gql'),
@@ -16,12 +18,21 @@ const typeDefs = readFileSync(
 
 const resolvers = {
   Query: {
-    users: () => {
+    users: (_, __, contextValue) => {
+      isLoggedIn(contextValue);
+
       return listUsers();
     },
+
     user: (_, args) => {
       return showUser({ id: args.id });
     },
+
+    me: (_, __, contextValue) => {
+      isLoggedIn(contextValue);
+
+      return showUser({ id: contextValue.user.id });
+    }
   },
   Mutation: {
     createUser: async (_, args) => {
@@ -32,7 +43,13 @@ const resolvers = {
       return result;
     },
 
-    updateUser: (_, args) => {
+    updateUser: (_, args, contextValue) => {
+      isLoggedIn(contextValue);
+
+      if (contextValue.user.id !== args.id) {
+        throw new ForbiddedError(`Forbidden`);
+      };
+
       return editUser({ id: args.id, ...args.input });
     },
 
